@@ -166,14 +166,18 @@
     color: #c0a090;
   }
 
-  /* 窄螢幕(手機)切換 */
+  /* 窄螢幕(手機):圖+列表都顯示 */
   @media (max-width: 700px) {
     .page { padding: 16px 12px; }
     h1 { font-size: 22px; letter-spacing: 4px; }
     .subtitle { font-size: 12px; margin-bottom: 16px; }
-    .chakra-stage { display: none; }
-    .mobile-list { display: flex; }
-    .hint { display: none; }
+    .mobile-list { display: flex; margin-top: 18px; }
+    .hint {
+      font-size: 11px;
+      margin-top: 8px;
+      letter-spacing: 1px;
+    }
+    .hint::before { content: "👆 "; }
   }
 
   /* Modal */
