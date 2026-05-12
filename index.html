@@ -382,173 +382,135 @@
       <!-- 右側裝飾 chakra 草書 -->
       <text x="985" y="400" font-size="56" fill="#c47a6a" font-style="italic" font-family="'Apple Chancery', 'Brush Script MT', cursive" opacity="0.5" transform="rotate(90 985 400)">chakra</text>
 
-      <!-- 坐墊陰影 -->
-      <ellipse cx="512" cy="685" rx="290" ry="20" fill="#f0c5b3" opacity="0.5"/>
+      <!-- 冥想人像剪影(正面 · 黑色粗線條) -->
+      <g stroke="#2a2a2a" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
 
-      <!-- 冥想人像剪影(從背後看) -->
-      <g stroke="#5a98ad" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.75">
+        <!-- 頭 -->
+        <ellipse cx="512" cy="100" rx="44" ry="48"/>
 
-        <!-- 頭頂髮髻 -->
-        <ellipse cx="512" cy="62" rx="18" ry="10" fill="#5a98ad" fill-opacity="0.25" stroke-width="2"/>
+        <!-- 脖子兩條 + 左肩→左上臂→左手肘→左手腕 -->
+        <path d="M 488 148
+                 L 488 178
+                 Q 458 183 434 200
+                 Q 402 222 378 250
+                 Q 326 296 308 354
+                 Q 294 396 312 432
+                 Q 336 468 388 476"/>
 
-        <!-- 頭(後腦輪廓) -->
-        <ellipse cx="512" cy="115" rx="44" ry="52"/>
+        <!-- 右側對稱 -->
+        <path d="M 536 148
+                 L 536 178
+                 Q 566 183 590 200
+                 Q 622 222 646 250
+                 Q 698 296 716 354
+                 Q 730 396 712 432
+                 Q 688 468 636 476"/>
 
-        <!-- 脖子兩條 -->
-        <path d="M 490 162 Q 484 180 484 200"/>
-        <path d="M 534 162 Q 540 180 540 200"/>
+        <!-- 雙手交疊在膝上(連接左右手腕) -->
+        <path d="M 388 476 Q 448 488 512 488 Q 576 488 636 476"/>
 
-        <!-- 左肩→左上臂→左手肘→左手腕(回到膝上中央) -->
-        <path d="M 484 200
-                 Q 458 208 432 222
-                 Q 396 240 372 274
-                 Q 350 312 348 358
-                 Q 350 410 376 458
-                 Q 408 502 460 528
-                 L 488 545"/>
+        <!-- 左腿:從髖外彎到左腳掌 -->
+        <path d="M 388 476
+                 Q 348 484 304 510
+                 Q 252 552 232 612
+                 Q 220 658 252 690
+                 Q 286 712 348 714
+                 L 472 714"/>
 
-        <!-- 右肩→右上臂→右手肘→右手腕 -->
-        <path d="M 540 200
-                 Q 566 208 592 222
-                 Q 628 240 652 274
-                 Q 674 312 676 358
-                 Q 674 410 648 458
-                 Q 616 502 564 528
-                 L 536 545"/>
+        <!-- 右腿:對稱 -->
+        <path d="M 636 476
+                 Q 676 484 720 510
+                 Q 772 552 792 612
+                 Q 804 658 772 690
+                 Q 738 712 676 714
+                 L 552 714"/>
 
-        <!-- 雙手交疊在膝上 -->
-        <path d="M 488 545 Q 512 555 536 545"/>
-
-        <!-- 背部輪廓(肩到髖內側,環繞脈輪柱) -->
-        <path d="M 484 200 Q 470 280 462 380 Q 458 460 470 540"/>
-        <path d="M 540 200 Q 554 280 562 380 Q 566 460 554 540"/>
-
-        <!-- 盤腿外輪廓:左腿從膝外彎到腳掌 -->
-        <path d="M 348 358
-                 Q 300 420 270 510
-                 Q 250 580 282 632
-                 Q 322 660 380 658
-                 L 460 654"/>
-        <!-- 右腿對稱 -->
-        <path d="M 676 358
-                 Q 724 420 754 510
-                 Q 774 580 742 632
-                 Q 702 660 644 658
-                 L 564 654"/>
-
-        <!-- 雙腳腳板(盤腿交叉處) -->
-        <ellipse cx="324" cy="640" rx="36" ry="14" fill="#5a98ad" fill-opacity="0.15" stroke-width="2"/>
-        <ellipse cx="700" cy="640" rx="36" ry="14" fill="#5a98ad" fill-opacity="0.15" stroke-width="2"/>
-
-        <!-- 雙腿交叉中央(從左腳掌延伸到右大腿,反之亦然) -->
-        <path d="M 360 644 Q 440 660 512 650 Q 584 660 664 644" opacity="0.7"/>
+        <!-- 雙腳板中央交叉(連接左右盤腿) -->
+        <path d="M 472 714 Q 492 724 512 716 Q 532 724 552 714"/>
       </g>
 
-      <!-- 隱微脈輪能量柱(中軸) -->
-      <line x1="512" y1="200" x2="512" y2="640" stroke="#c0a090" stroke-width="1.5" opacity="0.18" stroke-dasharray="2 4"/>
+      <!-- 坐墊陰影(放在人像之下) -->
+      <ellipse cx="512" cy="738" rx="305" ry="14" fill="#d0a090" opacity="0.18"/>
 
-      <!-- 連線(從脈輪圓邊到標籤,末端小圓點) — 配合新 Y 位置 -->
+      <!-- 連線(從脈輪圓邊到標籤,末端小圓點) -->
       <g stroke-width="2" stroke-linecap="round">
-        <line x1="552" y1="62"  x2="660" y2="62"  stroke="#B07ACC"/><circle cx="666" cy="62"  r="3.5" fill="#B07ACC"/>
-        <line x1="474" y1="130" x2="396" y2="130" stroke="#7DC4D0"/><circle cx="390" cy="130" r="3.5" fill="#7DC4D0"/>
-        <line x1="552" y1="225" x2="660" y2="225" stroke="#3DA0D8"/><circle cx="666" cy="225" r="3.5" fill="#3DA0D8"/>
-        <line x1="474" y1="335" x2="396" y2="335" stroke="#9CC756"/><circle cx="390" cy="335" r="3.5" fill="#9CC756"/>
-        <line x1="552" y1="430" x2="660" y2="430" stroke="#F1C232"/><circle cx="666" cy="430" r="3.5" fill="#F1C232"/>
-        <line x1="474" y1="510" x2="396" y2="510" stroke="#F08A3D"/><circle cx="390" cy="510" r="3.5" fill="#F08A3D"/>
-        <line x1="552" y1="620" x2="660" y2="620" stroke="#E94F4F"/><circle cx="666" cy="620" r="3.5" fill="#E94F4F"/>
+        <line x1="544" y1="32"  x2="660" y2="32"  stroke="#B07ACC"/><circle cx="666" cy="32"  r="3.5" fill="#B07ACC"/>
+        <line x1="480" y1="100" x2="396" y2="100" stroke="#9b6ec5"/><circle cx="390" cy="100" r="3.5" fill="#9b6ec5"/>
+        <line x1="544" y1="185" x2="660" y2="185" stroke="#3DA0D8"/><circle cx="666" cy="185" r="3.5" fill="#3DA0D8"/>
+        <line x1="480" y1="300" x2="396" y2="300" stroke="#9CC756"/><circle cx="390" cy="300" r="3.5" fill="#9CC756"/>
+        <line x1="544" y1="395" x2="660" y2="395" stroke="#F1C232"/><circle cx="666" cy="395" r="3.5" fill="#F1C232"/>
+        <line x1="480" y1="520" x2="396" y2="520" stroke="#F08A3D"/><circle cx="390" cy="520" r="3.5" fill="#F08A3D"/>
+        <line x1="544" y1="620" x2="660" y2="620" stroke="#E94F4F"/><circle cx="666" cy="620" r="3.5" fill="#E94F4F"/>
       </g>
 
-      <!-- 7 個脈輪圓圈(主色+白邊+花瓣裝飾) -->
+      <!-- 7 個脈輪圓圈(外光暈 + 主色 + 內白) -->
       <g>
         <!-- 頂輪(頭頂上方) -->
-        <circle cx="512" cy="62" r="34" fill="#B07ACC"/>
-        <g fill="none" stroke="#fff" stroke-width="1.4" opacity="0.85">
-          <circle cx="512" cy="62" r="22"/>
-          <g transform="translate(512 62)">
-            <path d="M 0 -20 L 5 -8 L 0 -2 L -5 -8 Z"/>
-            <path d="M 0 20 L 5 8 L 0 2 L -5 8 Z"/>
-            <path d="M -20 0 L -8 -5 L -2 0 L -8 5 Z"/>
-            <path d="M 20 0 L 8 -5 L 2 0 L 8 5 Z"/>
-          </g>
-        </g>
+        <circle cx="512" cy="32" r="32" fill="#B07ACC" fill-opacity="0.22"/>
+        <circle cx="512" cy="32" r="18" fill="#E94F8A"/>
+        <circle cx="512" cy="32" r="6"  fill="#fff" fill-opacity="0.9"/>
 
         <!-- 眉心輪(額頭) -->
-        <circle cx="512" cy="130" r="32" fill="#7DC4D0"/>
-        <g fill="none" stroke="#fff" stroke-width="1.4" opacity="0.85">
-          <circle cx="512" cy="130" r="20"/>
-          <path d="M 500 126 L 524 126 L 512 142 Z" fill="#fff" fill-opacity="0.35"/>
-        </g>
+        <circle cx="512" cy="100" r="30" fill="#9b6ec5" fill-opacity="0.22"/>
+        <circle cx="512" cy="100" r="17" fill="#7E3FB8"/>
+        <circle cx="512" cy="100" r="6"  fill="#fff" fill-opacity="0.9"/>
 
         <!-- 喉輪(脖子) -->
-        <circle cx="512" cy="225" r="32" fill="#3DA0D8"/>
-        <g fill="none" stroke="#fff" stroke-width="1.4" opacity="0.85">
-          <circle cx="512" cy="225" r="20"/>
-          <circle cx="512" cy="225" r="10"/>
-          <path d="M 500 222 L 524 222 L 512 236 Z" fill="#fff" fill-opacity="0.4"/>
-        </g>
+        <circle cx="512" cy="185" r="30" fill="#7DC4D0" fill-opacity="0.28"/>
+        <circle cx="512" cy="185" r="17" fill="#3DA0D8"/>
+        <circle cx="512" cy="185" r="6"  fill="#fff" fill-opacity="0.9"/>
 
         <!-- 心輪(胸) -->
-        <circle cx="512" cy="335" r="34" fill="#9CC756"/>
-        <g fill="none" stroke="#fff" stroke-width="1.4" opacity="0.85">
-          <circle cx="512" cy="335" r="22"/>
-          <path d="M 500 324 L 524 324 L 512 344 Z"/>
-          <path d="M 500 346 L 524 346 L 512 326 Z"/>
-        </g>
+        <circle cx="512" cy="300" r="30" fill="#A6D070" fill-opacity="0.3"/>
+        <circle cx="512" cy="300" r="17" fill="#7AB73A"/>
+        <circle cx="512" cy="300" r="6"  fill="#fff" fill-opacity="0.9"/>
 
         <!-- 太陽神經叢輪(上腹) -->
-        <circle cx="512" cy="430" r="32" fill="#F1C232"/>
-        <g fill="none" stroke="#fff" stroke-width="1.4" opacity="0.9">
-          <circle cx="512" cy="430" r="20"/>
-          <g transform="translate(512 430)">
-            <path d="M 0 -18 L 0 -8 M 0 18 L 0 8 M -18 0 L -8 0 M 18 0 L 8 0 M -13 -13 L -6 -6 M 13 -13 L 6 -6 M -13 13 L -6 6 M 13 13 L 6 6"/>
-          </g>
-        </g>
+        <circle cx="512" cy="395" r="30" fill="#FCE38A" fill-opacity="0.5"/>
+        <circle cx="512" cy="395" r="17" fill="#F1C232"/>
+        <circle cx="512" cy="395" r="6"  fill="#fff" fill-opacity="0.9"/>
 
-        <!-- 臍輪(下腹) -->
-        <circle cx="512" cy="510" r="32" fill="#F08A3D"/>
-        <g fill="none" stroke="#fff" stroke-width="1.4" opacity="0.9">
-          <circle cx="512" cy="510" r="18"/>
-          <circle cx="512" cy="510" r="6" fill="#fff" fill-opacity="0.4"/>
-        </g>
+        <!-- 臍輪 / 本我輪(下腹) -->
+        <circle cx="512" cy="520" r="30" fill="#F0A56A" fill-opacity="0.3"/>
+        <circle cx="512" cy="520" r="17" fill="#F08A3D"/>
+        <circle cx="512" cy="520" r="6"  fill="#fff" fill-opacity="0.9"/>
 
-        <!-- 海底輪(會陰/坐底) -->
-        <circle cx="512" cy="620" r="32" fill="#E94F4F"/>
-        <g fill="none" stroke="#fff" stroke-width="1.4" opacity="0.9">
-          <circle cx="512" cy="620" r="20"/>
-          <path d="M 500 628 L 512 610 L 524 628 Z"/>
-        </g>
+        <!-- 海底輪(坐底/會陰) -->
+        <circle cx="512" cy="620" r="30" fill="#F08080" fill-opacity="0.3"/>
+        <circle cx="512" cy="620" r="17" fill="#E94F4F"/>
+        <circle cx="512" cy="620" r="6"  fill="#fff" fill-opacity="0.9"/>
       </g>
 
       <!-- 標籤文字 -->
       <g fill="#3a3a3a">
-        <text x="680" y="68"  font-size="28" font-weight="500" letter-spacing="3">頂輪</text>
-        <text x="680" y="93"  font-size="16" fill="#8a7060" letter-spacing="2" font-family="'Helvetica Neue', sans-serif">Sahasrara</text>
+        <text x="680" y="38"  font-size="28" font-weight="500" letter-spacing="3">頂輪</text>
+        <text x="680" y="63"  font-size="16" fill="#8a7060" letter-spacing="2" font-family="'Helvetica Neue', sans-serif">Sahasrara</text>
 
-        <text x="376" y="135" font-size="28" font-weight="500" text-anchor="end" letter-spacing="3">眉心輪<tspan font-size="16" fill="#8a7060" letter-spacing="1">(三眼輪)</tspan></text>
-        <text x="376" y="160" font-size="16" fill="#8a7060" text-anchor="end" letter-spacing="2" font-family="'Helvetica Neue', sans-serif">Ajna</text>
+        <text x="376" y="105" font-size="28" font-weight="500" text-anchor="end" letter-spacing="3">眉心輪<tspan font-size="16" fill="#8a7060" letter-spacing="1">(三眼輪)</tspan></text>
+        <text x="376" y="130" font-size="16" fill="#8a7060" text-anchor="end" letter-spacing="2" font-family="'Helvetica Neue', sans-serif">Ajna</text>
 
-        <text x="680" y="230" font-size="28" font-weight="500" letter-spacing="3">喉輪</text>
-        <text x="680" y="255" font-size="16" fill="#8a7060" letter-spacing="2" font-family="'Helvetica Neue', sans-serif">Vishuddha</text>
+        <text x="680" y="190" font-size="28" font-weight="500" letter-spacing="3">喉輪</text>
+        <text x="680" y="215" font-size="16" fill="#8a7060" letter-spacing="2" font-family="'Helvetica Neue', sans-serif">Vishuddha</text>
 
-        <text x="376" y="340" font-size="28" font-weight="500" text-anchor="end" letter-spacing="3">心輪</text>
-        <text x="376" y="365" font-size="16" fill="#8a7060" text-anchor="end" letter-spacing="2" font-family="'Helvetica Neue', sans-serif">Anahata</text>
+        <text x="376" y="305" font-size="28" font-weight="500" text-anchor="end" letter-spacing="3">心輪</text>
+        <text x="376" y="330" font-size="16" fill="#8a7060" text-anchor="end" letter-spacing="2" font-family="'Helvetica Neue', sans-serif">Anahata</text>
 
-        <text x="680" y="435" font-size="24" font-weight="500" letter-spacing="2">太陽神經叢輪</text>
-        <text x="680" y="459" font-size="16" fill="#8a7060" letter-spacing="2" font-family="'Helvetica Neue', sans-serif">Manipura</text>
+        <text x="680" y="400" font-size="24" font-weight="500" letter-spacing="2">太陽神經叢輪</text>
+        <text x="680" y="424" font-size="16" fill="#8a7060" letter-spacing="2" font-family="'Helvetica Neue', sans-serif">Manipura</text>
 
-        <text x="376" y="515" font-size="28" font-weight="500" text-anchor="end" letter-spacing="3">臍輪</text>
-        <text x="376" y="540" font-size="16" fill="#8a7060" text-anchor="end" letter-spacing="2" font-family="'Helvetica Neue', sans-serif">Svadhishthana</text>
+        <text x="376" y="525" font-size="28" font-weight="500" text-anchor="end" letter-spacing="3">臍輪</text>
+        <text x="376" y="550" font-size="16" fill="#8a7060" text-anchor="end" letter-spacing="2" font-family="'Helvetica Neue', sans-serif">Svadhishthana</text>
 
         <text x="680" y="625" font-size="28" font-weight="500" letter-spacing="3">海底輪</text>
         <text x="680" y="650" font-size="16" fill="#8a7060" letter-spacing="2" font-family="'Helvetica Neue', sans-serif">Muladhara</text>
       </g>
     </svg>
-    <div class="hotspot" data-key="crown"   style="left:50%; top:8.1%"></div>
-    <div class="hotspot" data-key="brow"    style="left:50%; top:16.9%"></div>
-    <div class="hotspot" data-key="throat"  style="left:50%; top:29.3%"></div>
-    <div class="hotspot" data-key="heart"   style="left:50%; top:43.6%"></div>
-    <div class="hotspot" data-key="solar"   style="left:50%; top:56%"></div>
-    <div class="hotspot" data-key="sacral"  style="left:50%; top:66.4%"></div>
+    <div class="hotspot" data-key="crown"   style="left:50%; top:4.2%"></div>
+    <div class="hotspot" data-key="brow"    style="left:50%; top:13%"></div>
+    <div class="hotspot" data-key="throat"  style="left:50%; top:24.1%"></div>
+    <div class="hotspot" data-key="heart"   style="left:50%; top:39.1%"></div>
+    <div class="hotspot" data-key="solar"   style="left:50%; top:51.4%"></div>
+    <div class="hotspot" data-key="sacral"  style="left:50%; top:67.7%"></div>
     <div class="hotspot" data-key="root"    style="left:50%; top:80.7%"></div>
   </div>
 
