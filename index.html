@@ -275,30 +275,40 @@
     flex: 1;
   }
 
-  /* 抽籤 模式 */
+  /* 抽籤 模式 — 紙條風格 */
   .fortune {
     text-align: center;
   }
-  .fortune-emoji {
-    font-size: 36px;
-    margin-bottom: 12px;
-  }
-  .fortune-title {
-    font-size: 26px;
-    font-weight: bold;
-    letter-spacing: 3px;
+  .fortune-label {
+    font-size: 14px;
+    letter-spacing: 6px;
+    color: #b09080;
     margin-bottom: 14px;
-    padding: 8px 16px;
-    display: inline-block;
-    border-top: 2px solid currentColor;
-    border-bottom: 2px solid currentColor;
   }
-  .fortune-desc {
-    font-size: 17px;
-    line-height: 1.8;
-    color: #5a4030;
-    padding: 0 8px;
-    margin-bottom: 24px;
+  .paper-strip {
+    border: 2px dashed;
+    padding: 28px 20px;
+    border-radius: 6px;
+    margin-bottom: 22px;
+    position: relative;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+    animation: paperIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  @keyframes paperIn {
+    from { transform: translateY(-12px) rotate(-2deg); opacity: 0; }
+    to { transform: translateY(0) rotate(0); opacity: 1; }
+  }
+  .paper-emoji {
+    font-size: 44px;
+    margin-bottom: 10px;
+    line-height: 1;
+  }
+  .paper-text {
+    font-size: 21px;
+    font-weight: bold;
+    line-height: 1.7;
+    color: #4a2f20;
+    letter-spacing: 2px;
   }
   .redraw-btn {
     padding: 12px 32px;
@@ -316,22 +326,24 @@
   /* 全部 模式 */
   .all-list { text-align: left; }
   .all-item {
-    background: #fff;
+    display: flex;
+    align-items: center;
+    gap: 12px;
     border-left: 4px solid currentColor;
-    padding: 14px 18px;
-    border-radius: 8px;
-    margin-bottom: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
   }
-  .all-item-title {
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 6px;
+  .all-item-emoji {
+    font-size: 24px;
+    flex-shrink: 0;
   }
-  .all-item-desc {
-    font-size: 14px;
-    line-height: 1.7;
-    color: #6a5040;
+  .all-item-text {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #4a2f20;
+    flex: 1;
   }
 
   @media (max-width: 600px) {
@@ -389,17 +401,18 @@ const CHAKRAS = {
     en: "Muladhara",
     emoji: "🔴",
     color: "#E94F4F",
-    theme: "行動・安全・物質豐饒|身體力行 腳踏實地",
+    paper: "#fde0e0",
+    theme: "行動・安全・物質豐饒",
     items: [
-      { t: "行動力橋樑", d: "挑選一件延宕超過一週的小事,現在立刻花 10 分鐘完成它。" },
-      { t: "豐盛天性",   d: "買一份稍微超出平時預算的精緻午餐或甜點,不帶罪惡感地享受它。" },
-      { t: "存在即禮物", d: "睡前對著鏡子看著自己的眼睛,真誠地說三次:「謝謝你一直在這裡。」" },
-      { t: "大地母親",   d: "去公園脫掉鞋子踩在草地上 5 分鐘,或親手修剪一盆綠色植物。" },
-      { t: "踏實敲門",   d: "為明天列出 3 個核心待辦事項,並只專注於完成這 3 件。" },
-      { t: "顯化呼吸",   d: "練習「4-7-8 呼吸法」:吸氣 4 秒、憋氣 7 秒、吐氣 8 秒,重複 3 次。" },
-      { t: "火焰生命力", d: "進行 15 分鐘的快走或高強度運動,感受心跳與體溫升高的力量。" },
-      { t: "體能跨越",   d: "今晚提早 30 分鐘上床睡覺,徹底修復肌肉與細胞。" },
-      { t: "供應需要",   d: "整理冰箱或儲物櫃,捐掉或處理掉不需要的物品,清出空間迎接新資源。" },
+      { t: "行動力是通往奇蹟的唯一橋樑", e: "🌉" },
+      { t: "豐盛是你的天性,請大方接收它", e: "💰" },
+      { t: "你的存在本身就是一份珍貴禮物", e: "🎁" },
+      { t: "在大地母親的懷抱中,你是安全的", e: "🌍" },
+      { t: "踏實做好每件事,成功會自動敲門", e: "🚪" },
+      { t: "每一口呼吸都在顯化物質的豐饒", e: "🌬️" },
+      { t: "你的生命力就像紅色的火焰般熾熱", e: "🔥" },
+      { t: "紮根當下,你擁有跨越困難的體能", e: "🏃" },
+      { t: "信任生命,它會供應你所有的需要", e: "🧺" },
     ]
   },
   sacral: {
@@ -407,17 +420,18 @@ const CHAKRAS = {
     en: "Svadhishthana",
     emoji: "🟠",
     color: "#F08A3D",
-    theme: "情緒・創意・熱情|感官享受 內在小孩",
+    paper: "#fde8d4",
+    theme: "情緒・創意・熱情",
     items: [
-      { t: "喜悅工作", d: "在辦公桌放一小盆花或一個可愛公仔,工作間隙看一眼。" },
-      { t: "情緒流動", d: "準備一本筆記本,寫下現在真實的 3 個感受,不論好壞都接受它。" },
-      { t: "2026 引擎", d: "找出一個你很久沒做但曾讓你熱血沸騰的愛好,這週末排進日程表。" },
-      { t: "點子王", d: "針對目前的困境,強迫自己寫出 10 個「天馬行空」的解決方法,愈怪愈好。" },
-      { t: "感官盛宴", d: "吃飯時關掉手機,專注感受食物的質地、香氣與味道。" },
-      { t: "創意顯化", d: "親手做一件事,不管是拼圖、繪畫、手作料理或是重新排列家具。" },
-      { t: "玩耍感動", d: "買一件童年最喜歡的零食,或玩一個簡單的益智小遊戲。" },
-      { t: "融化冷冰", d: "對遇到的第一位服務人員(外送員、店員)燦爛微笑並說聲謝謝。" },
-      { t: "生活盛宴", d: "換上一件平時捨不得穿的漂亮衣服出門,哪怕只是去超商。" },
+      { t: "帶著喜悅工作,成果會讓你驚訝", e: "🎨" },
+      { t: "你的每一份情緒都是美麗的能量流動", e: "🌊" },
+      { t: "讓熱情成為你 2026 前進的引擎", e: "🔥" },
+      { t: "點子王是你!隨時都有新奇的招數", e: "💡" },
+      { t: "享受當下的每一口食物、每一份愛", e: "😋" },
+      { t: "創意是你的天賦,大膽去顯化吧", e: "🪄" },
+      { t: "像孩子一樣玩耍,找回最初的感動", e: "🍭" },
+      { t: "你的笑容能融化荒島上最冷的冰", e: "☀️" },
+      { t: "生命是一場充滿驚喜的感官盛宴", e: "🥂" },
     ]
   },
   solar: {
@@ -425,17 +439,18 @@ const CHAKRAS = {
     en: "Manipura",
     emoji: "🟡",
     color: "#F1C232",
-    theme: "自信・意志・影響力|自我肯定 主動掌控",
+    paper: "#fdf3d2",
+    theme: "自信・意志・影響力",
     items: [
-      { t: "生命主人",     d: "對一件一直遷就別人的事情勇敢表達自己的真實決定。" },
-      { t: "亮晶晶光環",   d: "記下一件你今天做得很好、值得稱讚的小事。" },
-      { t: "照亮大海",     d: "在社群媒體或朋友群組中分享一段正向、有建設性的話語。" },
-      { t: "我想試試",     d: "挑戰一項平時不敢嘗試的微挑戰,例如獨自去吃一頓飯或主動打招呼。" },
-      { t: "鋼鐵意志",     d: "拒絕掉一個會消耗你能量的無效聚會。" },
-      { t: "最優秀建築師", d: "畫出你未來三個月的理想生活清單(Dream List)。" },
-      { t: "不道歉的閃耀", d: "當別人誇獎你時,不謙虛推辭,而是大方說聲「謝謝,我也覺得這點我很棒」。" },
-      { t: "肯定自己",     d: "找一張便條紙寫下「你真的很努力了」,貼在電腦螢幕旁。" },
-      { t: "世界轉動",     d: "幫助一個需要幫忙的路人,或給予同事工作上的微小協助。" },
+      { t: "相信自己,你就是創造生命的主人", e: "👑" },
+      { t: "自信光環讓你走到哪裡都亮晶晶", e: "✨" },
+      { t: "你的內在力量足以照亮整片大海", e: "🕯️" },
+      { t: "勇敢嘗試,第一反應是「我想試試」", e: "🚀" },
+      { t: "面對挑戰時,你擁有鋼鐵般的意志", e: "🛡️" },
+      { t: "你是生命藍圖最優秀的建築師", e: "🏗️" },
+      { t: "閃耀你的光,不需要向任何人道歉", e: "🌟" },
+      { t: "每一天都比昨天更懂得肯定自己", e: "👍" },
+      { t: "你是有影響力的,世界因你而轉動", e: "🌍" },
     ]
   },
   heart: {
@@ -443,17 +458,18 @@ const CHAKRAS = {
     en: "Anahata",
     emoji: "🟢",
     color: "#9CC756",
-    theme: "愛・關係・慈悲|情感連結 接納",
+    paper: "#e6f3d4",
+    theme: "愛・關係・慈悲",
     items: [
-      { t: "唯一解藥", d: "打電話或傳訊息給一位許久未見的好友,告訴對方你想念他。" },
-      { t: "溫柔待人", d: "今天的對話中不抱怨、不評判,嘗試用同理心聽完對方的敘述。" },
-      { t: "解救自己", d: "寫下一個你無法原諒的人或事,然後深呼吸說:「我選擇放過我自己。」" },
-      { t: "靈魂約定", d: "給家人一個長達 8 秒的深情擁抱。" },
-      { t: "能量交換", d: "寫一張感謝小卡送給身邊默默支持你的夥伴。" },
-      { t: "心心連結", d: "找時間參與一個志工活動或捐贈小額款項給需要的單位。" },
-      { t: "珍珠磨練", d: "寫下最近最挫折的一件事,並找出它帶給你的 1 個正面經驗。" },
-      { t: "溫暖的家", d: "回家後點上香氛或整理床鋪,營造一個讓你徹底放鬆的空間。" },
-      { t: "喜悅回流", d: "主動請客喝杯飲料,或分享好東西給周遭的人。" },
+      { t: "愛是荒島上唯一且最強大的解藥", e: "❤️" },
+      { t: "溫柔待人,世界也會溫柔待你", e: "🌸" },
+      { t: "寬恕別人,其實是在解救你自己", e: "🕊️" },
+      { t: "每一個相遇都是靈魂最美的約定", e: "🌌" },
+      { t: "感恩是最高頻的能量交換方式", e: "🙏" },
+      { t: "連結彼此的心,我們更有力量", e: "🤝" },
+      { t: "每一顆珍珠都來自沙粒的勇敢磨練", e: "🐚" },
+      { t: "你的心就是最安全、最溫暖的家", e: "🏡" },
+      { t: "在愛中分享,你的喜悅會成倍回流", e: "💞" },
     ]
   },
   throat: {
@@ -461,17 +477,18 @@ const CHAKRAS = {
     en: "Vishuddha",
     emoji: "🔵",
     color: "#3DA0D8",
-    theme: "表達・真理・溝通|真實發聲 內在平靜",
+    paper: "#d6ecf8",
+    theme: "表達・真理・溝通",
     items: [
-      { t: "最可靠",   d: "實踐一個你曾對別人許下、但尚未完成的小承諾。" },
-      { t: "療癒聲音", d: "睡前聽一段頌缽或自然的聲音,或者哼唱一首你喜歡的歌。" },
-      { t: "守護信仰", d: "在會議或對話中,溫和但堅定地提出你的不同見解。" },
-      { t: "最美風景", d: "拍一張純素顏或無濾鏡的照片,欣賞最真實的自己。" },
-      { t: "風的指引", d: "到戶外吹吹風 10 分鐘,什麼都不做,只聽環境的聲音。" },
-      { t: "沈默真理", d: "練習 5 分鐘的禁言,不說話、不滑手機,只與自己獨處。" },
-      { t: "勇敢說不", d: "對一件讓你感到壓力或委屈的請求說「不」。" },
-      { t: "能量文字", d: "寫 200 字左右的日記,記錄今日的心情點滴。" },
-      { t: "讓愛流動", d: "寫一封情書給自己,或是向愛人坦承一件你深埋心底的感謝。" },
+      { t: "誠實表達,別人都覺得你最可靠", e: "🗨️" },
+      { t: "你的聲音自帶頻率,充滿療癒力量", e: "🎤" },
+      { t: "溫和地說話,堅定地守護你的信仰", e: "⚓" },
+      { t: "真實的你,就是世界上最美的風景", e: "🖼️" },
+      { t: "聽聽風的聲音,它帶著宇宙的指引", e: "🌬️" },
+      { t: "保持沈默,能聽見靈魂深處的真理", e: "🤫" },
+      { t: "勇敢對不喜歡的事說「不」,你更自在", e: "🙅" },
+      { t: "用文字紀錄生命,文字自帶能量", e: "✍️" },
+      { t: "溝通是靈魂的橋樑,讓愛流動起來", e: "🌉" },
     ]
   },
   brow: {
@@ -479,19 +496,19 @@ const CHAKRAS = {
     alias: "三眼輪",
     en: "Ajna",
     emoji: "🟣",
-    color: "#7DC4D0",
-    theme: "直覺・智慧|靈性覺察 信任生命",
+    color: "#5B6CB8",
+    paper: "#dcdef0",
+    theme: "直覺・智慧・靈性覺察",
     items: [
-      { t: "直覺指南針", d: "當下遇到選擇時,閉上眼 3 秒,選那個讓你身體感到放鬆的選項。" },
-      { t: "第一眼精準", d: "信任你的第一感覺,不論是看人、看書或是看商品。" },
-      { t: "夢境解決",   d: "睡前在床頭放紙筆,請求潛意識在夢中給你指引,醒來第一時間記錄。" },
-      { t: "最好的安排", d: "當事情不如預期時,對自己說:「這背後一定有對我更好的禮物。」" },
-      { t: "自然顯現",   d: "坐著發呆 10 分鐘,不刻意思考問題,讓大腦留白。" },
-      { t: "預感好運",   d: "出門前告訴自己:「今天一定會有不可思議的好事發生。」" },
-      { t: "智慧化身",   d: "換位思考:如果我是未來的自己,會如何看待現在的這個困難?" },
-      { t: "能量合一",   d: "仰望星空或雲朵,感受自己與大自然共存的寬闊。" },
-      { t: "宇宙導航",   d: "閉上眼,想像一股白光從頭頂灌入全身,感受被支持的力量。" },
-      { t: "本自具足",   d: "停止滑社群媒體,不再與他人比較,專注在自己已擁有的幸福。" },
+      { t: "你的心就是最好的指南針,相信它", e: "🧭" },
+      { t: "直覺是超能力,你的第一眼最精準", e: "⚡" },
+      { t: "夢境會告訴你解決困難的神奇辦法", e: "🌙" },
+      { t: "所有的發生,背後都藏著最好的安排", e: "🧘" },
+      { t: "停下來呼吸,指引就會自然顯現", e: "🧘‍♂️" },
+      { t: "預感好運,總會有好事發生在你身上", e: "🍀" },
+      { t: "看見挫折中的祝福,你是智慧的化身", e: "👁️" },
+      { t: "萬物一體,你與全宇宙的能量合一", e: "🌌" },
+      { t: "不要害怕迷路,宇宙正為你導航", e: "🗺️" },
     ]
   },
   crown: {
@@ -499,18 +516,15 @@ const CHAKRAS = {
     en: "Sahasrara",
     emoji: "👑",
     color: "#B07ACC",
-    theme: "合一・靈性|信任宇宙 本自具足",
+    paper: "#ecddf3",
+    theme: "合一・靈性・本自具足",
     items: [
-      { t: "直覺指南針", d: "當下遇到選擇時,閉上眼 3 秒,選那個讓你身體感到放鬆的選項。" },
-      { t: "第一眼精準", d: "信任你的第一感覺,不論是看人、看書或是看商品。" },
-      { t: "夢境解決",   d: "睡前在床頭放紙筆,請求潛意識在夢中給你指引,醒來第一時間記錄。" },
-      { t: "最好的安排", d: "當事情不如預期時,對自己說:「這背後一定有對我更好的禮物。」" },
-      { t: "自然顯現",   d: "坐著發呆 10 分鐘,不刻意思考問題,讓大腦留白。" },
-      { t: "預感好運",   d: "出門前告訴自己:「今天一定會有不可思議的好事發生。」" },
-      { t: "智慧化身",   d: "換位思考:如果我是未來的自己,會如何看待現在的這個困難?" },
-      { t: "能量合一",   d: "仰望星空或雲朵,感受自己與大自然共存的寬闊。" },
-      { t: "宇宙導航",   d: "閉上眼,想像一股白光從頭頂灌入全身,感受被支持的力量。" },
-      { t: "本自具足",   d: "停止滑社群媒體,不再與他人比較,專注在自己已擁有的幸福。" },
+      { t: "靜默中藏著宇宙給你的最大智慧", e: "🌌" },
+      { t: "平安就在當下,你本自具足一切", e: "🕊️" },
+      { t: "感謝這場荒島上的珍貴生命體驗", e: "🏝️" },
+      { t: "信任生命,它會帶你去最美的地方", e: "⛵" },
+      { t: "全宇宙都在支持你,你並不孤單", e: "🌌" },
+      { t: "心印在心,我們在愛中永遠連結", e: "💖" },
     ]
   },
 };
@@ -548,19 +562,21 @@ function render() {
   if (currentMode === "fortune") {
     const pick = c.items[Math.floor(Math.random() * c.items.length)];
     modalBody.innerHTML = `
-      <div class="fortune" style="color:${c.color}">
-        <div class="fortune-emoji">✨ 今日籤文 ✨</div>
-        <div class="fortune-title">「${pick.t}」</div>
-        <div class="fortune-desc">${pick.d}</div>
-        <button class="redraw-btn" style="background:${c.color}">重新抽一張</button>
+      <div class="fortune">
+        <div class="fortune-label">✨ 今日籤文 ✨</div>
+        <div class="paper-strip" style="background:${c.paper}; border-color:${c.color}; color:${c.color}">
+          <div class="paper-emoji">${pick.e}</div>
+          <div class="paper-text">${pick.t}</div>
+        </div>
+        <button class="redraw-btn" style="background:${c.color}">再抽一張</button>
       </div>
     `;
     modalBody.querySelector(".redraw-btn").addEventListener("click", render);
   } else {
-    const html = c.items.map((it, i) => `
-      <div class="all-item" style="color:${c.color}">
-        <div class="all-item-title">${i + 1}. ${it.t}</div>
-        <div class="all-item-desc">${it.d}</div>
+    const html = c.items.map((it) => `
+      <div class="all-item" style="background:${c.paper}; color:${c.color}">
+        <div class="all-item-emoji">${it.e}</div>
+        <div class="all-item-text">${it.t}</div>
       </div>
     `).join("");
     modalBody.innerHTML = `<div class="all-list">${html}</div>`;
