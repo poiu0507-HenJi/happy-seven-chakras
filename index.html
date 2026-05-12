@@ -54,6 +54,57 @@
     background: rgba(255,255,255,0);
     transition: background 0.25s, box-shadow 0.25s, transform 0.25s;
   }
+  /* 左上粉色塊的標題(原圖文字已塗除) */
+  .cover-title {
+    position: absolute;
+    top: 5%;
+    left: 4%;
+    width: 22%;
+    color: #fff;
+    text-align: center;
+    pointer-events: none;
+  }
+  .cover-title .zh {
+    font-size: clamp(20px, 2.8vw, 32px);
+    font-weight: 500;
+    letter-spacing: 6px;
+    line-height: 1.2;
+  }
+  .cover-title .en {
+    font-size: clamp(12px, 1.5vw, 17px);
+    letter-spacing: 4px;
+    opacity: 0.95;
+    margin-top: 4px;
+  }
+
+  /* 7 個脈輪標籤 */
+  .cover-label {
+    position: absolute;
+    color: #4a4a4a;
+    pointer-events: none;
+    transform: translateY(-50%);
+    line-height: 1.1;
+  }
+  .cover-label.right { left: 67%; text-align: left; }
+  .cover-label.left { right: 62%; text-align: right; }
+  .cover-label .zh {
+    font-size: clamp(15px, 2.3vw, 26px);
+    font-weight: 500;
+    letter-spacing: 3px;
+  }
+  .cover-label .zh small {
+    font-size: 0.6em;
+    opacity: 0.75;
+    letter-spacing: 2px;
+    margin-left: 2px;
+  }
+  .cover-label .en {
+    font-size: clamp(9px, 1.1vw, 13px);
+    color: #8a7060;
+    letter-spacing: 2px;
+    margin-top: 4px;
+  }
+
   /* 右上角品牌名(原 logo 已從圖片本身塗除) */
   .brand-cover {
     position: absolute;
@@ -397,6 +448,17 @@
       <div class="zh">幸福七脈輪</div>
       <div class="en">SEVEN CHAKRAS</div>
     </div>
+    <div class="cover-title">
+      <div class="zh">幸福脈輪</div>
+      <div class="en">7 Chakras</div>
+    </div>
+    <div class="cover-label right" style="top:26%"><div class="zh">頂輪</div><div class="en">Sahasrara</div></div>
+    <div class="cover-label left"  style="top:36%"><div class="zh">眉心輪<small>(三眼輪)</small></div><div class="en">Ajna</div></div>
+    <div class="cover-label right" style="top:47%"><div class="zh">喉輪</div><div class="en">Vishuddha</div></div>
+    <div class="cover-label left"  style="top:59%"><div class="zh">心輪</div><div class="en">Anahata</div></div>
+    <div class="cover-label right" style="top:71%"><div class="zh">太陽神經叢輪</div><div class="en">Manipura</div></div>
+    <div class="cover-label left"  style="top:83%"><div class="zh">臍輪</div><div class="en">Svadhishthana</div></div>
+    <div class="cover-label right" style="top:96%"><div class="zh">海底輪</div><div class="en">Muladhara</div></div>
     <div class="hotspot" data-key="crown"   style="left:50.4%; top:21.5%"></div>
     <div class="hotspot" data-key="brow"    style="left:50.4%; top:32.3%"></div>
     <div class="hotspot" data-key="throat"  style="left:50.4%; top:43.6%"></div>
