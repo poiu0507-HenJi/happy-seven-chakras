@@ -44,34 +44,33 @@
     user-select: none;
     -webkit-user-drag: none;
   }
-  /* 左上「七大脈輪」改成「幸福脈輪」(粉色塊覆蓋同色) */
-  .title-cover {
+  /* 右上 HELLO YOGIS 改成「幸福脈輪」 */
+  .brand-cover {
     position: absolute;
-    top: 4%;
-    left: 2%;
-    width: 26%;
-    height: 22%;
-    background: #f0a298;
+    top: 6%;
+    right: 3%;
+    width: 22%;
+    height: 18%;
+    background: #ffeee4;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     pointer-events: none;
-    border-radius: 0 0 14px 0;
   }
-  .title-cover .zh {
-    font-size: clamp(20px, 2.8vw, 34px);
-    color: #fff;
-    letter-spacing: 6px;
+  .brand-cover .zh {
+    font-size: clamp(18px, 2.4vw, 28px);
+    color: #c47a6a;
+    letter-spacing: 4px;
     font-weight: 500;
     line-height: 1.2;
   }
-  .title-cover .en {
-    font-size: clamp(11px, 1.4vw, 16px);
-    color: #fff;
+  .brand-cover .en {
+    font-size: clamp(10px, 1.2vw, 14px);
+    color: #c47a6a;
     letter-spacing: 3px;
-    margin-top: 6px;
-    opacity: 0.95;
+    margin-top: 5px;
+    opacity: 0.75;
   }
   .hotspot {
     position: absolute;
@@ -397,7 +396,7 @@
 
   <div class="chakra-stage">
     <img src="chakra.jpg" alt="幸福脈輪">
-    <div class="title-cover">
+    <div class="brand-cover">
       <div class="zh">幸福脈輪</div>
       <div class="en">7 Chakras</div>
     </div>
