@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>七大脈輪 · 今日籤文</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: linear-gradient(180deg, #fdf4ee 0%, #f5e6d8 100%);
+    font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
+    color: #3a3a3a;
+    min-height: 100vh;
+  }
+  .page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+  }
+  h1 {
+    font-size: 24px;
+    color: #8a6e5a;
+    letter-spacing: 4px;
+    font-weight: 400;
+    margin-bottom: 8px;
+  }
+  .subtitle {
+    font-size: 14px;
+    color: #b09080;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+  }
+  .chakra-stage {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: 1024px;
+  }
+  .chakra-stage img {
+    width: 100%;
+    height: auto;
+    display: block;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+  .hotspot {
+    position: absolute;
+    width: 9.5%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    background: rgba(255,255,255,0);
+    transition: background 0.25s, box-shadow 0.25s, transform 0.25s;
+  }
+  /* 右上角品牌名(原 logo 已從圖片本身塗除) */
+  .brand-cover {
+    position: absolute;
+    top: 7%;
+    right: 4%;
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    pointer-events: none;
+  }
+  .brand-cover .zh {
+    font-size: clamp(16px, 2.2vw, 26px);
+    font-weight: bold;
+    color: #c47a6a;
+    letter-spacing: 4px;
+    line-height: 1.1;
+  }
+  .brand-cover .en {
+    font-size: clamp(8px, 0.9vw, 11px);
+    color: #c47a6a;
+    letter-spacing: 3px;
+    margin-top: 3px;
+    opacity: 0.7;
+  }
+  .hotspot:hover {
+    background: rgba(255,255,255,0.35);
+    box-shadow: 0 0 30px 8px rgba(255,255,255,0.5);
+    transform: translate(-50%, -50%) scale(1.15);
+  }
+  .hotspot::after {
+    content: "點我";
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0);
+    font-size: 13px;
+    font-weight: bold;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+    transition: color 0.25s;
+  }
+  .hotspot:hover::after { color: rgba(255,255,255,0.95); }
+
+  .hint {
+    margin-top: 10px;
+    font-size: 13px;
+    color: #b09080;
+    letter-spacing: 2px;
+  }
+
+  /* Modal */
+  .modal-mask {
+    position: fixed;
+    inset: 0;
+    background: rgba(40, 25, 15, 0.55);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    padding: 20px;
+    animation: fadeIn 0.3s;
+  }
+  .modal-mask.open { display: flex; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+  .modal {
+    background: #fffaf3;
+    border-radius: 24px;
+    width: 100%;
+    max-width: 520px;
+    max-height: 90vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    animation: pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  @keyframes pop { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+  .modal-header {
+    padding: 24px 28px 16px;
+    color: #fff;
+    text-align: center;
+    position: relative;
+  }
+  .modal-header .chakra-name {
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 6px;
+    margin-bottom: 4px;
+  }
+  .modal-header .chakra-en {
+    font-size: 13px;
+    letter-spacing: 4px;
+    opacity: 0.85;
+    margin-bottom: 6px;
+  }
+  .modal-header .chakra-theme {
+    font-size: 13px;
+    opacity: 0.9;
+    letter-spacing: 2px;
+  }
+  .close-btn {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: rgba(255,255,255,0.25);
+    color: #fff;
+    border-radius: 50%;
+    font-size: 18px;
+    cursor: pointer;
+    line-height: 1;
+  }
+  .close-btn:hover { background: rgba(255,255,255,0.4); }
+
+  .mode-tabs {
+    display: flex;
+    background: rgba(255,255,255,0.15);
+    margin: 0 28px;
+    border-radius: 12px;
+    padding: 4px;
+    margin-top: 8px;
+  }
+  .mode-tab {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    background: transparent;
+    color: rgba(255,255,255,0.7);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    letter-spacing: 2px;
+    transition: all 0.2s;
+  }
+  .mode-tab.active {
+    background: rgba(255,255,255,0.95);
+    color: #5a4030;
+    font-weight: bold;
+  }
+
+  .modal-body {
+    padding: 28px;
+    overflow-y: auto;
+    flex: 1;
+  }
+
+  /* 抽籤 模式 */
+  .fortune {
+    text-align: center;
+  }
+  .fortune-emoji {
+    font-size: 36px;
+    margin-bottom: 12px;
+  }
+  .fortune-title {
+    font-size: 26px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    margin-bottom: 14px;
+    padding: 8px 16px;
+    display: inline-block;
+    border-top: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+  }
+  .fortune-desc {
+    font-size: 17px;
+    line-height: 1.8;
+    color: #5a4030;
+    padding: 0 8px;
+    margin-bottom: 24px;
+  }
+  .redraw-btn {
+    padding: 12px 32px;
+    border: none;
+    border-radius: 30px;
+    color: #fff;
+    font-size: 15px;
+    letter-spacing: 4px;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    transition: transform 0.2s;
+  }
+  .redraw-btn:hover { transform: translateY(-2px); }
+
+  /* 全部 模式 */
+  .all-list { text-align: left; }
+  .all-item {
+    background: #fff;
+    border-left: 4px solid currentColor;
+    padding: 14px 18px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .all-item-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 6px;
+  }
+  .all-item-desc {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #6a5040;
+  }
+
+  @media (max-width: 600px) {
+    .modal-header .chakra-name { font-size: 22px; }
+    .fortune-title { font-size: 20px; }
+    .fortune-desc { font-size: 15px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1>七大脈輪 · 今日籤文</h1>
+  <div class="subtitle">點擊任一脈輪 · 抽取今日行動指引</div>
+
+  <div class="chakra-stage">
+    <img src="chakra.jpg" alt="七大脈輪">
+    <div class="brand-cover">
+      <div class="zh">幸福七脈輪</div>
+      <div class="en">SEVEN CHAKRAS</div>
+    </div>
+    <div class="hotspot" data-key="crown"   style="left:50.4%; top:21.5%"></div>
+    <div class="hotspot" data-key="brow"    style="left:50.4%; top:32.3%"></div>
+    <div class="hotspot" data-key="throat"  style="left:50.4%; top:43.6%"></div>
+    <div class="hotspot" data-key="heart"   style="left:50.4%; top:55.3%"></div>
+    <div class="hotspot" data-key="solar"   style="left:50.4%; top:67.0%"></div>
+    <div class="hotspot" data-key="sacral"  style="left:50.4%; top:78.1%"></div>
+    <div class="hotspot" data-key="root"    style="left:50.4%; top:89.8%"></div>
+  </div>
+
+  <div class="hint">✨ 將游標移到脈輪上方 · 點擊抽取行動方案 ✨</div>
+</div>
+
+<div class="modal-mask" id="modal">
+  <div class="modal">
+    <div class="modal-header" id="modalHeader">
+      <button class="close-btn" id="closeBtn">×</button>
+      <div class="chakra-name" id="chakraName"></div>
+      <div class="chakra-en" id="chakraEn"></div>
+      <div class="chakra-theme" id="chakraTheme"></div>
+      <div class="mode-tabs">
+        <button class="mode-tab active" data-mode="fortune">抽籤</button>
+        <button class="mode-tab" data-mode="all">看全部</button>
+      </div>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+const CHAKRAS = {
+  root: {
+    name: "海底輪",
+    en: "Muladhara",
+    emoji: "🔴",
+    color: "#E94F4F",
+    theme: "行動・安全・物質豐饒|身體力行 腳踏實地",
+    items: [
+      { t: "行動力橋樑", d: "挑選一件延宕超過一週的小事,現在立刻花 10 分鐘完成它。" },
+      { t: "豐盛天性",   d: "買一份稍微超出平時預算的精緻午餐或甜點,不帶罪惡感地享受它。" },
+      { t: "存在即禮物", d: "睡前對著鏡子看著自己的眼睛,真誠地說三次:「謝謝你一直在這裡。」" },
+      { t: "大地母親",   d: "去公園脫掉鞋子踩在草地上 5 分鐘,或親手修剪一盆綠色植物。" },
+      { t: "踏實敲門",   d: "為明天列出 3 個核心待辦事項,並只專注於完成這 3 件。" },
+      { t: "顯化呼吸",   d: "練習「4-7-8 呼吸法」:吸氣 4 秒、憋氣 7 秒、吐氣 8 秒,重複 3 次。" },
+      { t: "火焰生命力", d: "進行 15 分鐘的快走或高強度運動,感受心跳與體溫升高的力量。" },
+      { t: "體能跨越",   d: "今晚提早 30 分鐘上床睡覺,徹底修復肌肉與細胞。" },
+      { t: "供應需要",   d: "整理冰箱或儲物櫃,捐掉或處理掉不需要的物品,清出空間迎接新資源。" },
+    ]
+  },
+  sacral: {
+    name: "生殖輪",
+    en: "Svadhishthana",
+    emoji: "🟠",
+    color: "#F08A3D",
+    theme: "情緒・創意・熱情|感官享受 內在小孩",
+    items: [
+      { t: "喜悅工作", d: "在辦公桌放一小盆花或一個可愛公仔,工作間隙看一眼。" },
+      { t: "情緒流動", d: "準備一本筆記本,寫下現在真實的 3 個感受,不論好壞都接受它。" },
+      { t: "2026 引擎", d: "找出一個你很久沒做但曾讓你熱血沸騰的愛好,這週末排進日程表。" },
+      { t: "點子王", d: "針對目前的困境,強迫自己寫出 10 個「天馬行空」的解決方法,愈怪愈好。" },
+      { t: "感官盛宴", d: "吃飯時關掉手機,專注感受食物的質地、香氣與味道。" },
+      { t: "創意顯化", d: "親手做一件事,不管是拼圖、繪畫、手作料理或是重新排列家具。" },
+      { t: "玩耍感動", d: "買一件童年最喜歡的零食,或玩一個簡單的益智小遊戲。" },
+      { t: "融化冷冰", d: "對遇到的第一位服務人員(外送員、店員)燦爛微笑並說聲謝謝。" },
+      { t: "生活盛宴", d: "換上一件平時捨不得穿的漂亮衣服出門,哪怕只是去超商。" },
+    ]
+  },
+  solar: {
+    name: "太陽輪",
+    en: "Manipura",
+    emoji: "🟡",
+    color: "#F1C232",
+    theme: "自信・意志・影響力|自我肯定 主動掌控",
+    items: [
+      { t: "生命主人",     d: "對一件一直遷就別人的事情勇敢表達自己的真實決定。" },
+      { t: "亮晶晶光環",   d: "記下一件你今天做得很好、值得稱讚的小事。" },
+      { t: "照亮大海",     d: "在社群媒體或朋友群組中分享一段正向、有建設性的話語。" },
+      { t: "我想試試",     d: "挑戰一項平時不敢嘗試的微挑戰,例如獨自去吃一頓飯或主動打招呼。" },
+      { t: "鋼鐵意志",     d: "拒絕掉一個會消耗你能量的無效聚會。" },
+      { t: "最優秀建築師", d: "畫出你未來三個月的理想生活清單(Dream List)。" },
+      { t: "不道歉的閃耀", d: "當別人誇獎你時,不謙虛推辭,而是大方說聲「謝謝,我也覺得這點我很棒」。" },
+      { t: "肯定自己",     d: "找一張便條紙寫下「你真的很努力了」,貼在電腦螢幕旁。" },
+      { t: "世界轉動",     d: "幫助一個需要幫忙的路人,或給予同事工作上的微小協助。" },
+    ]
+  },
+  heart: {
+    name: "心輪",
+    en: "Anahata",
+    emoji: "🟢",
+    color: "#9CC756",
+    theme: "愛・關係・慈悲|情感連結 接納",
+    items: [
+      { t: "唯一解藥", d: "打電話或傳訊息給一位許久未見的好友,告訴對方你想念他。" },
+      { t: "溫柔待人", d: "今天的對話中不抱怨、不評判,嘗試用同理心聽完對方的敘述。" },
+      { t: "解救自己", d: "寫下一個你無法原諒的人或事,然後深呼吸說:「我選擇放過我自己。」" },
+      { t: "靈魂約定", d: "給家人一個長達 8 秒的深情擁抱。" },
+      { t: "能量交換", d: "寫一張感謝小卡送給身邊默默支持你的夥伴。" },
+      { t: "心心連結", d: "找時間參與一個志工活動或捐贈小額款項給需要的單位。" },
+      { t: "珍珠磨練", d: "寫下最近最挫折的一件事,並找出它帶給你的 1 個正面經驗。" },
+      { t: "溫暖的家", d: "回家後點上香氛或整理床鋪,營造一個讓你徹底放鬆的空間。" },
+      { t: "喜悅回流", d: "主動請客喝杯飲料,或分享好東西給周遭的人。" },
+    ]
+  },
+  throat: {
+    name: "喉輪",
+    en: "Vishuddha",
+    emoji: "🔵",
+    color: "#3DA0D8",
+    theme: "表達・真理・溝通|真實發聲 內在平靜",
+    items: [
+      { t: "最可靠",   d: "實踐一個你曾對別人許下、但尚未完成的小承諾。" },
+      { t: "療癒聲音", d: "睡前聽一段頌缽或自然的聲音,或者哼唱一首你喜歡的歌。" },
+      { t: "守護信仰", d: "在會議或對話中,溫和但堅定地提出你的不同見解。" },
+      { t: "最美風景", d: "拍一張純素顏或無濾鏡的照片,欣賞最真實的自己。" },
+      { t: "風的指引", d: "到戶外吹吹風 10 分鐘,什麼都不做,只聽環境的聲音。" },
+      { t: "沈默真理", d: "練習 5 分鐘的禁言,不說話、不滑手機,只與自己獨處。" },
+      { t: "勇敢說不", d: "對一件讓你感到壓力或委屈的請求說「不」。" },
+      { t: "能量文字", d: "寫 200 字左右的日記,記錄今日的心情點滴。" },
+      { t: "讓愛流動", d: "寫一封情書給自己,或是向愛人坦承一件你深埋心底的感謝。" },
+    ]
+  },
+  brow: {
+    name: "眉心輪",
+    en: "Ajna",
+    emoji: "🟣",
+    color: "#7DC4D0",
+    theme: "直覺・智慧|靈性覺察 信任生命",
+    items: [
+      { t: "直覺指南針", d: "當下遇到選擇時,閉上眼 3 秒,選那個讓你身體感到放鬆的選項。" },
+      { t: "第一眼精準", d: "信任你的第一感覺,不論是看人、看書或是看商品。" },
+      { t: "夢境解決",   d: "睡前在床頭放紙筆,請求潛意識在夢中給你指引,醒來第一時間記錄。" },
+      { t: "最好的安排", d: "當事情不如預期時,對自己說:「這背後一定有對我更好的禮物。」" },
+      { t: "自然顯現",   d: "坐著發呆 10 分鐘,不刻意思考問題,讓大腦留白。" },
+      { t: "預感好運",   d: "出門前告訴自己:「今天一定會有不可思議的好事發生。」" },
+      { t: "智慧化身",   d: "換位思考:如果我是未來的自己,會如何看待現在的這個困難?" },
+      { t: "能量合一",   d: "仰望星空或雲朵,感受自己與大自然共存的寬闊。" },
+      { t: "宇宙導航",   d: "閉上眼,想像一股白光從頭頂灌入全身,感受被支持的力量。" },
+      { t: "本自具足",   d: "停止滑社群媒體,不再與他人比較,專注在自己已擁有的幸福。" },
+    ]
+  },
+  crown: {
+    name: "頂輪",
+    en: "Sahasrara",
+    emoji: "👑",
+    color: "#B07ACC",
+    theme: "合一・靈性|信任宇宙 本自具足",
+    items: [
+      { t: "直覺指南針", d: "當下遇到選擇時,閉上眼 3 秒,選那個讓你身體感到放鬆的選項。" },
+      { t: "第一眼精準", d: "信任你的第一感覺,不論是看人、看書或是看商品。" },
+      { t: "夢境解決",   d: "睡前在床頭放紙筆,請求潛意識在夢中給你指引,醒來第一時間記錄。" },
+      { t: "最好的安排", d: "當事情不如預期時,對自己說:「這背後一定有對我更好的禮物。」" },
+      { t: "自然顯現",   d: "坐著發呆 10 分鐘,不刻意思考問題,讓大腦留白。" },
+      { t: "預感好運",   d: "出門前告訴自己:「今天一定會有不可思議的好事發生。」" },
+      { t: "智慧化身",   d: "換位思考:如果我是未來的自己,會如何看待現在的這個困難?" },
+      { t: "能量合一",   d: "仰望星空或雲朵,感受自己與大自然共存的寬闊。" },
+      { t: "宇宙導航",   d: "閉上眼,想像一股白光從頭頂灌入全身,感受被支持的力量。" },
+      { t: "本自具足",   d: "停止滑社群媒體,不再與他人比較,專注在自己已擁有的幸福。" },
+    ]
+  },
+};
+
+const modal = document.getElementById("modal");
+const closeBtn = document.getElementById("closeBtn");
+const modalHeader = document.getElementById("modalHeader");
+const chakraNameEl = document.getElementById("chakraName");
+const chakraEnEl = document.getElementById("chakraEn");
+const chakraThemeEl = document.getElementById("chakraTheme");
+const modalBody = document.getElementById("modalBody");
+const tabs = document.querySelectorAll(".mode-tab");
+
+let currentKey = null;
+let currentMode = "fortune";
+
+function openChakra(key) {
+  currentKey = key;
+  const c = CHAKRAS[key];
+  modalHeader.style.background = `linear-gradient(135deg, ${c.color} 0%, ${shade(c.color, -20)} 100%)`;
+  chakraNameEl.textContent = `${c.emoji} ${c.name}`;
+  chakraEnEl.textContent = c.en;
+  const [t1, t2] = c.theme.split("|");
+  chakraThemeEl.innerHTML = `${t1} <span style="opacity:0.6">|</span> ${t2}`;
+  currentMode = "fortune";
+  tabs.forEach(t => t.classList.toggle("active", t.dataset.mode === "fortune"));
+  render();
+  modal.classList.add("open");
+}
+
+function render() {
+  const c = CHAKRAS[currentKey];
+  if (currentMode === "fortune") {
+    const pick = c.items[Math.floor(Math.random() * c.items.length)];
+    modalBody.innerHTML = `
+      <div class="fortune" style="color:${c.color}">
+        <div class="fortune-emoji">✨ 今日籤文 ✨</div>
+        <div class="fortune-title">「${pick.t}」</div>
+        <div class="fortune-desc">${pick.d}</div>
+        <button class="redraw-btn" style="background:${c.color}">重新抽一張</button>
+      </div>
+    `;
+    modalBody.querySelector(".redraw-btn").addEventListener("click", render);
+  } else {
+    const html = c.items.map((it, i) => `
+      <div class="all-item" style="color:${c.color}">
+        <div class="all-item-title">${i + 1}. ${it.t}</div>
+        <div class="all-item-desc">${it.d}</div>
+      </div>
+    `).join("");
+    modalBody.innerHTML = `<div class="all-list">${html}</div>`;
+  }
+}
+
+function shade(hex, percent) {
+  const num = parseInt(hex.replace("#", ""), 16);
+  let r = (num >> 16) + percent;
+  let g = ((num >> 8) & 0xff) + percent;
+  let b = (num & 0xff) + percent;
+  r = Math.max(0, Math.min(255, r));
+  g = Math.max(0, Math.min(255, g));
+  b = Math.max(0, Math.min(255, b));
+  return "#" + ((r << 16) | (g << 8) | b).toString(16).padStart(6, "0");
+}
+
+document.querySelectorAll(".hotspot").forEach(el => {
+  el.addEventListener("click", () => openChakra(el.dataset.key));
+});
+
+tabs.forEach(t => {
+  t.addEventListener("click", () => {
+    currentMode = t.dataset.mode;
+    tabs.forEach(x => x.classList.toggle("active", x === t));
+    render();
+  });
+});
+
+closeBtn.addEventListener("click", () => modal.classList.remove("open"));
+modal.addEventListener("click", (e) => {
+  if (e.target === modal) modal.classList.remove("open");
+});
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") modal.classList.remove("open");
+});
+</script>
+</body>
+</html>
