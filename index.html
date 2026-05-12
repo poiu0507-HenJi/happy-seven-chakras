@@ -36,16 +36,42 @@
     display: inline-block;
     width: 100%;
     max-width: 1024px;
-    aspect-ratio: 1024 / 768;
   }
-  .chakra-svg {
+  .chakra-stage img {
     width: 100%;
-    height: 100%;
+    height: auto;
     display: block;
     user-select: none;
+    -webkit-user-drag: none;
   }
-  .chakra-svg text {
-    font-family: "STHeiti", "PingFang TC", "Microsoft JhengHei", "Helvetica Neue", sans-serif;
+  /* 左上「七大脈輪」改成「幸福脈輪」(粉色塊覆蓋同色) */
+  .title-cover {
+    position: absolute;
+    top: 4%;
+    left: 2%;
+    width: 26%;
+    height: 22%;
+    background: #f0a298;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    border-radius: 0 0 14px 0;
+  }
+  .title-cover .zh {
+    font-size: clamp(20px, 2.8vw, 34px);
+    color: #fff;
+    letter-spacing: 6px;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+  .title-cover .en {
+    font-size: clamp(11px, 1.4vw, 16px);
+    color: #fff;
+    letter-spacing: 3px;
+    margin-top: 6px;
+    opacity: 0.95;
   }
   .hotspot {
     position: absolute;
@@ -370,156 +396,18 @@
   <div class="subtitle">點擊任一脈輪 · 抽取今日行動指引</div>
 
   <div class="chakra-stage">
-    <svg class="chakra-svg" viewBox="0 0 1024 768" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" data-version="v2">
-      <!-- 背景 -->
-      <rect width="1024" height="768" fill="#fdf4ee"/>
-
-      <!-- 左上粉色標題塊 -->
-      <path d="M 0 0 L 320 0 L 320 150 Q 320 180 290 180 L 0 180 Z" fill="#f0a298"/>
-      <text x="160" y="78" font-size="44" fill="#fff" text-anchor="middle" letter-spacing="6" font-weight="500">幸福脈輪</text>
-      <text x="160" y="130" font-size="22" fill="#fff" text-anchor="middle" letter-spacing="3" font-family="'Helvetica Neue', sans-serif" opacity="0.95">7 Chakras</text>
-
-      <!-- 右側裝飾 chakra 草書 -->
-      <text x="985" y="400" font-size="56" fill="#c47a6a" font-style="italic" font-family="'Apple Chancery', 'Brush Script MT', cursive" opacity="0.5" transform="rotate(90 985 400)">chakra</text>
-
-      <!-- 冥想人像剪影(正面 · 黑色粗線條,直線+關節折點) -->
-      <g stroke="#2a2a2a" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
-
-        <!-- 頭 -->
-        <ellipse cx="512" cy="100" rx="42" ry="46"/>
-
-        <!-- 脖子(兩條短直線) -->
-        <line x1="494" y1="146" x2="494" y2="178"/>
-        <line x1="530" y1="146" x2="530" y2="178"/>
-
-        <!-- 左半身輪廓:脖子→肩→上臂→手肘→前臂→手腕 -->
-        <path d="M 494 178
-                 Q 488 184 478 187
-                 L 412 212
-                 Q 388 218 384 240
-                 L 376 332
-                 Q 376 366 392 392
-                 L 446 472
-                 Q 452 478 462 478"/>
-
-        <!-- 右半身對稱 -->
-        <path d="M 530 178
-                 Q 536 184 546 187
-                 L 612 212
-                 Q 636 218 640 240
-                 L 648 332
-                 Q 648 366 632 392
-                 L 578 472
-                 Q 572 478 562 478"/>
-
-        <!-- 雙手交疊在膝上(中央水平短線) -->
-        <line x1="462" y1="478" x2="562" y2="478"/>
-
-        <!-- 左大腿→膝→小腿→左腳掌 -->
-        <path d="M 462 478
-                 L 388 490
-                 L 294 538
-                 Q 244 568 234 622
-                 Q 230 668 268 700
-                 Q 304 720 350 718
-                 L 446 716"/>
-
-        <!-- 右大腿→膝→小腿→右腳掌 -->
-        <path d="M 562 478
-                 L 636 490
-                 L 730 538
-                 Q 780 568 790 622
-                 Q 794 668 756 700
-                 Q 720 720 674 718
-                 L 578 716"/>
-
-        <!-- 雙腳板中央交叉(連接左右盤腿底) -->
-        <path d="M 446 716 Q 480 728 512 722 Q 544 728 578 716"/>
-      </g>
-
-      <!-- 坐墊陰影(放在人像之下) -->
-      <ellipse cx="512" cy="744" rx="320" ry="12" fill="#d0a090" opacity="0.18"/>
-
-      <!-- 連線(從脈輪圓邊到標籤,末端小圓點) -->
-      <g stroke-width="2" stroke-linecap="round">
-        <line x1="544" y1="32"  x2="660" y2="32"  stroke="#B07ACC"/><circle cx="666" cy="32"  r="3.5" fill="#B07ACC"/>
-        <line x1="480" y1="100" x2="396" y2="100" stroke="#9b6ec5"/><circle cx="390" cy="100" r="3.5" fill="#9b6ec5"/>
-        <line x1="544" y1="185" x2="660" y2="185" stroke="#3DA0D8"/><circle cx="666" cy="185" r="3.5" fill="#3DA0D8"/>
-        <line x1="480" y1="300" x2="396" y2="300" stroke="#9CC756"/><circle cx="390" cy="300" r="3.5" fill="#9CC756"/>
-        <line x1="544" y1="395" x2="660" y2="395" stroke="#F1C232"/><circle cx="666" cy="395" r="3.5" fill="#F1C232"/>
-        <line x1="480" y1="520" x2="396" y2="520" stroke="#F08A3D"/><circle cx="390" cy="520" r="3.5" fill="#F08A3D"/>
-        <line x1="544" y1="620" x2="660" y2="620" stroke="#E94F4F"/><circle cx="666" cy="620" r="3.5" fill="#E94F4F"/>
-      </g>
-
-      <!-- 7 個脈輪圓圈(外光暈 + 主色 + 內白) -->
-      <g>
-        <!-- 頂輪(頭頂上方) -->
-        <circle cx="512" cy="32" r="32" fill="#B07ACC" fill-opacity="0.22"/>
-        <circle cx="512" cy="32" r="18" fill="#E94F8A"/>
-        <circle cx="512" cy="32" r="6"  fill="#fff" fill-opacity="0.9"/>
-
-        <!-- 眉心輪(額頭) -->
-        <circle cx="512" cy="100" r="30" fill="#9b6ec5" fill-opacity="0.22"/>
-        <circle cx="512" cy="100" r="17" fill="#7E3FB8"/>
-        <circle cx="512" cy="100" r="6"  fill="#fff" fill-opacity="0.9"/>
-
-        <!-- 喉輪(脖子) -->
-        <circle cx="512" cy="185" r="30" fill="#7DC4D0" fill-opacity="0.28"/>
-        <circle cx="512" cy="185" r="17" fill="#3DA0D8"/>
-        <circle cx="512" cy="185" r="6"  fill="#fff" fill-opacity="0.9"/>
-
-        <!-- 心輪(胸) -->
-        <circle cx="512" cy="300" r="30" fill="#A6D070" fill-opacity="0.3"/>
-        <circle cx="512" cy="300" r="17" fill="#7AB73A"/>
-        <circle cx="512" cy="300" r="6"  fill="#fff" fill-opacity="0.9"/>
-
-        <!-- 太陽神經叢輪(上腹) -->
-        <circle cx="512" cy="395" r="30" fill="#FCE38A" fill-opacity="0.5"/>
-        <circle cx="512" cy="395" r="17" fill="#F1C232"/>
-        <circle cx="512" cy="395" r="6"  fill="#fff" fill-opacity="0.9"/>
-
-        <!-- 臍輪 / 本我輪(下腹) -->
-        <circle cx="512" cy="520" r="30" fill="#F0A56A" fill-opacity="0.3"/>
-        <circle cx="512" cy="520" r="17" fill="#F08A3D"/>
-        <circle cx="512" cy="520" r="6"  fill="#fff" fill-opacity="0.9"/>
-
-        <!-- 海底輪(坐底/會陰) -->
-        <circle cx="512" cy="620" r="30" fill="#F08080" fill-opacity="0.3"/>
-        <circle cx="512" cy="620" r="17" fill="#E94F4F"/>
-        <circle cx="512" cy="620" r="6"  fill="#fff" fill-opacity="0.9"/>
-      </g>
-
-      <!-- 標籤文字 -->
-      <g fill="#3a3a3a">
-        <text x="680" y="38"  font-size="28" font-weight="500" letter-spacing="3">頂輪</text>
-        <text x="680" y="63"  font-size="16" fill="#8a7060" letter-spacing="2" font-family="'Helvetica Neue', sans-serif">Sahasrara</text>
-
-        <text x="376" y="105" font-size="28" font-weight="500" text-anchor="end" letter-spacing="3">眉心輪<tspan font-size="16" fill="#8a7060" letter-spacing="1">(三眼輪)</tspan></text>
-        <text x="376" y="130" font-size="16" fill="#8a7060" text-anchor="end" letter-spacing="2" font-family="'Helvetica Neue', sans-serif">Ajna</text>
-
-        <text x="680" y="190" font-size="28" font-weight="500" letter-spacing="3">喉輪</text>
-        <text x="680" y="215" font-size="16" fill="#8a7060" letter-spacing="2" font-family="'Helvetica Neue', sans-serif">Vishuddha</text>
-
-        <text x="376" y="305" font-size="28" font-weight="500" text-anchor="end" letter-spacing="3">心輪</text>
-        <text x="376" y="330" font-size="16" fill="#8a7060" text-anchor="end" letter-spacing="2" font-family="'Helvetica Neue', sans-serif">Anahata</text>
-
-        <text x="680" y="400" font-size="24" font-weight="500" letter-spacing="2">太陽神經叢輪</text>
-        <text x="680" y="424" font-size="16" fill="#8a7060" letter-spacing="2" font-family="'Helvetica Neue', sans-serif">Manipura</text>
-
-        <text x="376" y="525" font-size="28" font-weight="500" text-anchor="end" letter-spacing="3">臍輪</text>
-        <text x="376" y="550" font-size="16" fill="#8a7060" text-anchor="end" letter-spacing="2" font-family="'Helvetica Neue', sans-serif">Svadhishthana</text>
-
-        <text x="680" y="625" font-size="28" font-weight="500" letter-spacing="3">海底輪</text>
-        <text x="680" y="650" font-size="16" fill="#8a7060" letter-spacing="2" font-family="'Helvetica Neue', sans-serif">Muladhara</text>
-      </g>
-    </svg>
-    <div class="hotspot" data-key="crown"   style="left:50%; top:4.2%"></div>
-    <div class="hotspot" data-key="brow"    style="left:50%; top:13%"></div>
-    <div class="hotspot" data-key="throat"  style="left:50%; top:24.1%"></div>
-    <div class="hotspot" data-key="heart"   style="left:50%; top:39.1%"></div>
-    <div class="hotspot" data-key="solar"   style="left:50%; top:51.4%"></div>
-    <div class="hotspot" data-key="sacral"  style="left:50%; top:67.7%"></div>
-    <div class="hotspot" data-key="root"    style="left:50%; top:80.7%"></div>
+    <img src="chakra.jpg" alt="幸福脈輪">
+    <div class="title-cover">
+      <div class="zh">幸福脈輪</div>
+      <div class="en">7 Chakras</div>
+    </div>
+    <div class="hotspot" data-key="crown"   style="left:50.4%; top:21.5%"></div>
+    <div class="hotspot" data-key="brow"    style="left:50.4%; top:32.3%"></div>
+    <div class="hotspot" data-key="throat"  style="left:50.4%; top:43.6%"></div>
+    <div class="hotspot" data-key="heart"   style="left:50.4%; top:55.3%"></div>
+    <div class="hotspot" data-key="solar"   style="left:50.4%; top:67.0%"></div>
+    <div class="hotspot" data-key="sacral"  style="left:50.4%; top:78.1%"></div>
+    <div class="hotspot" data-key="root"    style="left:50.4%; top:89.8%"></div>
   </div>
 
   <div class="hint">✨ 將游標移到脈輪上方 · 點擊抽取行動方案 ✨</div>
