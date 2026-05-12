@@ -107,6 +107,72 @@
     letter-spacing: 2px;
   }
 
+  /* 手機版:直立脈輪柱 */
+  .mobile-list {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    padding: 8px 4px 0;
+  }
+  .mobile-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: rgba(255,255,255,0.7);
+    border: none;
+    padding: 10px 16px;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    transition: transform 0.15s, box-shadow 0.15s;
+    text-align: left;
+    width: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .mobile-item:active {
+    transform: scale(0.97);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  }
+  .mobile-dot {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 22px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+  }
+  .mobile-text { flex: 1; }
+  .mobile-zh {
+    font-size: 17px;
+    font-weight: bold;
+    color: #5a4030;
+    letter-spacing: 2px;
+  }
+  .mobile-en {
+    font-size: 11px;
+    color: #a08070;
+    letter-spacing: 1.5px;
+    margin-top: 2px;
+  }
+  .mobile-arrow {
+    font-size: 18px;
+    color: #c0a090;
+  }
+
+  /* 窄螢幕(手機)切換 */
+  @media (max-width: 700px) {
+    .page { padding: 16px 12px; }
+    h1 { font-size: 22px; letter-spacing: 4px; }
+    .subtitle { font-size: 12px; margin-bottom: 16px; }
+    .chakra-stage { display: none; }
+    .mobile-list { display: flex; }
+    .hint { display: none; }
+  }
+
   /* Modal */
   .modal-mask {
     position: fixed;
@@ -296,6 +362,8 @@
   </div>
 
   <div class="hint">✨ 將游標移到脈輪上方 · 點擊抽取行動方案 ✨</div>
+
+  <div class="mobile-list" id="mobileList"></div>
 </div>
 
 <div class="modal-mask" id="modal">
@@ -508,6 +576,26 @@ function shade(hex, percent) {
 }
 
 document.querySelectorAll(".hotspot").forEach(el => {
+  el.addEventListener("click", () => openChakra(el.dataset.key));
+});
+
+// 手機版直立脈輪柱(由上而下:頂輪 → 海底輪)
+const MOBILE_ORDER = ["crown", "brow", "throat", "heart", "solar", "sacral", "root"];
+const mobileList = document.getElementById("mobileList");
+mobileList.innerHTML = MOBILE_ORDER.map(key => {
+  const c = CHAKRAS[key];
+  return `
+    <button class="mobile-item" data-key="${key}">
+      <div class="mobile-dot" style="background:${c.color}">${c.emoji}</div>
+      <div class="mobile-text">
+        <div class="mobile-zh">${c.name}</div>
+        <div class="mobile-en">${c.en}</div>
+      </div>
+      <div class="mobile-arrow">›</div>
+    </button>
+  `;
+}).join("");
+mobileList.querySelectorAll(".mobile-item").forEach(el => {
   el.addEventListener("click", () => openChakra(el.dataset.key));
 });
 
